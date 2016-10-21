@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "yarn": "yarn"
+    "set": "node -e \"var target = './package.json';\nvar pkg = require(target);\nvar value = process.argv[process.argv.length - 1];\nvar p = pkg;\nfor(var n = 1; n < process.argv.length;n++){\n    var key = process.argv[n];\n      if(n >= process.argv.length - 2){\n          p[key] = value;\n          break;\n        }else{\n          p[key] = p[key] || {};\n          p = p[key];\n        }\n      };\nrequire('fs').writeFileSync(target, (JSON.stringify(pkg, null, '  ')));\"",
+    "get": "node -e \"var pkg = require('./package.json');\nvar p = pkg;\nvar result;\nvar keys = [];\nfor(var n = 1; n<process.argv.length;n++){  key = process.argv[n];\n  try{\n    result = p[key];\n    p = pkg[key];\n    keys.push(key);\n  }catch(e){\n    console.error('key: ' + keys.join(' -> ') + ' is not an object' );\n    process.exit(1);\n  }\n}\nconsole.log(result);\"",
+    "delete": "node -e \"var target = './package.json';\nvar pkg = require(target);\nvar result;\nvar p = pkg;\nfor(var n = 1; n < process.argv.length;n++){\n      var key = process.argv[n];\n      if(n >= process.argv.length - 1){\n          result = p[key];\n\t\t\t\t\tdelete p[key];\n          break;\n        }else{\n          p[key] = p[key] || {};\n          p = p[key];\n        }\n      };\nrequire('fs').writeFileSync(target, (JSON.stringify(pkg, null, '  ')));\nconsole.log(result);\"",
+    "init-git": "echo \"#! /bin/bash\n #add git version tag upon npm version <'major'|'minor'|'patch'>\n version=\\`git diff HEAD^..HEAD -- \\\"\\$(git rev-parse --show-toplevel)\\\"/package.json | grep '^\\+.*version' | sed -s 's/[^0-9\\.]//g'\\`\n\n if [ \\\"\\$version\\\" != \\\"\\\" ]; then\n git tag -a \\\"v\\$version\\\" -m \\\"\\`git log -1 --format=%s\\`\\\"\n echo \\\"Created a new tag, v\\$version\\\"\n fi\" > ./.git/hooks/post-commit.sh"
   },
   "keywords": [],
   "author": "",
