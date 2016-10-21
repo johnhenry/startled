@@ -1,0 +1,16 @@
+{
+  "name": "startled",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "yarn": "yarn"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "yarn": "^0.16.1"
+  },
+  "dependencies": {}
+}
