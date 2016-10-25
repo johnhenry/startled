@@ -69,6 +69,22 @@ npm run delete < path in package.json >
 ## Installation scripts
 Update project capabilities by running scripts in the project directory.
 
+### generate-readme.sh
+- Compile a readme from json and ejs
+- Creates script:
+  - npm run generate-readme
+- Creates files:
+  - readme/readme.md.json
+	- readme/readme.md.ejs
+  - readme/.script/generate.js
+
+- Compiles to files:
+  - readme.md
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/js-next-browser-slug.sh)"
+```
+
 ### tag-git-npm-version.sh
 - Tag repo with package version upon running git version <'major'|'minor'|'patch'>
 
