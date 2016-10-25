@@ -71,7 +71,7 @@ tempset scripts delete "$tempdelete_"
 #check existance of .npmrc
 if [ ! -f .npmrc ]; then
 	echo "creating .npmrc"
-	echo "save=true;" > .npmrc
+	echo "save=true" > .npmrc
 fi
 
 #check existance of .gitignore
