@@ -1,20 +1,11 @@
-# install npm modules
+#install npm modules
 npm install --save-dev \
-browserify \
-babelify \
 babel-cli \
 babel-polyfill \
-babel-preset-babili \
-babel-plugin-transform-react-jsx \
 babel-plugin-transform-es2015-destructuring \
-babel-plugin-transform-async-to-generator \
-babel-plugin-transform-async-generator-functions \
-babel-plugin-minify-mangle-names \
-babel-plugin-minify-constant-folding \
 babel-preset-stage-3 \
-babel-preset-es2017 \
-babel-preset-es2016 \
-babel-preset-es2015 \
+babel-preset-latest \
+babel-preset-react \
 
 npm install --save-dev \
 react \
@@ -213,4 +204,4 @@ app(yargs.argv).then(console.log.bind(console)).catch(console.error.bind(console
 ' > html/.script/md-jsx-html.js
 
 #create scripts
-npm run set scripts build-html 'babel-node --debug --presets es2015,es2016,es2017,stage-3 --plugins transform-async-to-generator,transform-react-jsx,transform-es2015-destructuring,transform-async-generator-functions html/.script/md-jsx-html --indir ./html/ --outdir ./dist'
+npm run set scripts build-html 'babel-node --debug --presets latest,react,stage-3 --plugins transform-es2015-destructuring html/.script/md-jsx-html --indir ./html/ --outdir ./dist'
