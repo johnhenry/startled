@@ -27,7 +27,7 @@ Ensure that these utilities are installed first:
 In your project directory, run the following script:
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/_.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/init.sh)"
 ```
 
 This and also adds get, set, and delete npm scripts that allow manipulation of the package as a key-value store.
