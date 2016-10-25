@@ -1,16 +1,18 @@
-# startled
+# Startled
 
-Startled is a starting point for creating projects using modern tools and best practices.
+Startled is a starting point for creating projects using modern tools and best practices. It's a minimal project and a set of customization scripts.
 
 It makes heavy use of npm as a script runner and package.json for storing project data.
 
 The project's capabilities can be extended by running scripts (see below).
 
-## pre-requesties
+## Pre-requesties
 
 These commands are designed to work on linux and unix machines, including machines running macOS.
 
-If you're running Windows 10 Professional, you can run them using the [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide?f=255&MSPPError=-2147217396) or within a [Docker container](https://docker.com).
+If you're running Windows 10 Professional, you can run them using the [Windows subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide?f=255&MSPPError=-2147217396) or within a [Docker container](https://docker.com).
+
+If you're running some other version of Windows, the npm scripts _should_ work, but extension scripts will fail. You might want to try [cygwin](https://www.cygwin.com/) in this case, or try downloading and running the script source manually.
 
 Ensure that these utilities are installed first:
 
@@ -19,9 +21,9 @@ Ensure that these utilities are installed first:
 - [curl](https://curl.haxx.se)
 (curl is only necessary for extension scripts)
 
-## installation
+## Installation
 
-### new project
+### New project
 
 - 1. clone this repository
 
@@ -49,9 +51,9 @@ Ensure that these utilities are installed first:
 
 - start coding
 
-### existing project
+### Existing project
 
-- run the following script
+If you already have a a project, run the following script:
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/_.sh)"
@@ -59,13 +61,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/
 
 - continue coding
 
-## using npm
+## Using npm
  - update project version with "npm version <'patch'|'minor'|'major'>"
  - install modules with "npm install < package name >@< version tag? >"
 
-## internals
+## Internals
 
-### included npm scripts
+### Included npm scripts
 
 #### get: read a value from package.json
 
@@ -107,12 +109,14 @@ It does a few things...
 
 #### .startled/local-init.sh
 
-## installation scripts
-Update capabilities by running scripts in the project directory.
+## Installation scripts
+Update project capabilities by running scripts in the project directory.
 
 ### yarn.sh
-- Use yarn to manage packages
-- creates scripts "npm run install" and "npm run install"
+- Use [yarn](https://yarnpkg.com/) to manage packages
+- Creates scripts:
+  - npm run install < package name >
+  - npm run uninstall < package name >
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/yarn.sh)"
@@ -122,51 +126,119 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/
 
 These scripts will be ready soon.
 
-## css-next-slug.sh
+### css-next-slug.sh
 - Compile latest version of css into a self-contained slug
-- creates script "npm run build-css"
-- creates script/index.js
+- Creates script:
+  - npm run build-css
+- Creates files:
+  - style/index.css
+- Compiles to files:
+  - dist/index.css
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/css-next-slug.sh)"
 ```
 
-## js-next-slug.sh
+### js-next-slug.sh
 - Compile latest version of javascript into a self-contained slug
-- creates script "npm run build-js"
+- Creates script:
+  - npm run build-js
+- Creates files:
+  - script/index.js
+- Compiles to files:
+  - dist/index.js
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/js-next-slug.sh)"
 ```
 
-## js-next-browser-slug.sh
+### js-next-browser-slug.sh
 - Compile latest version of javascript into a self-contained slug for use in the browser
-- creates script "npm run build-js-browser"
+- Creates script:
+  - npm run build-js-browser
+- Creates files:
+  - script/index.js
+- Compiles to files:
+  - dist/index.js
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/js-next-browser-slug.sh)"
 ```
 
-## html.sh
+
+### lint-js.sh
+- Lint JavaScript
+- Creates scripts:
+  - npm run lint-js < package name >
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/lint-js.sh)"
+```
+
+### lint-css.sh
+- Lint CSS
+- Creates scripts:
+  - npm run lint-css < package name >
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/lint-css.sh)"
+```
+
+### html.sh
 - Compile react components into static html files.
-- creates script "npm run build-html"
+- Creates script:
+  - npm run build-html
+- Creates files:
+  - html/.md.jsx.html.js
+  - html/index.jsx
+- Compiles to files:
+  - dist/index.js
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/html.sh)"
 ```
 
-## node-next-slug.sh
+### node-next-slug.sh
 - Run a node script written in the latest version of javascript
-- creates script "npm run node"
+- Creates script:
+  - npm run node
+- Creates files:
+  - node/index.js
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/node-next.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/node.sh)"
 ```
 
-## static-server.sh
+### serve-static.sh
 - Run static server
-- creates script "npm run static"
+- Creates script:
+  - npm run serve-static
+- Requires files:
+  - dist/
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/static-server.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/serve-static.sh)"
+```
+
+### move.sh
+- Move static files into dist directory
+- Creates script:
+  - npm run move
+- Requires files:
+  - static/*
+  - dist/
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/move.sh)"
+```
+
+### deploy-surge.sh
+- Push static site to https://surge.sh
+- Creates script:
+  - npm run deploy-surge
+- Requires files:
+  - dist/*
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/johnhenry/startled/master/.startled/scripts/deploy-surge.sh)"
 ```
